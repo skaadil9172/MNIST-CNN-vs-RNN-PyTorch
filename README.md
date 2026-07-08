@@ -1,8 +1,12 @@
+<!-- TODO: Place banner.png inside the images/ folder to replace the placeholder banner -->
+<p align="center">
+<img src="images/banner.png" width="100%" alt="MNIST CNN vs RNN PyTorch Banner">
+</p>
+
 <div align="center">
 
 # MNIST Handwritten Digit Classification: CNN vs RNN
 **Comparative Analysis of Convolutional Neural Networks and Recurrent Neural Networks using PyTorch**
-
 
 <br />
 
@@ -14,7 +18,7 @@
 [![Computer Vision](https://img.shields.io/badge/Computer_Vision-FF6F00?style=for-the-badge&logo=python&logoColor=white)](#)
 [![Image Classification](https://img.shields.io/badge/Image_Classification-8A2BE2?style=for-the-badge&logo=python&logoColor=white)](#)
 
-<!-- Social / Repo Badges (Placeholders for actual repo deployment) -->
+<!-- Social / Repo Badges -->
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg?style=flat-square)](https://github.com/psf/black)
 
@@ -60,7 +64,7 @@
 - **Visual Analytics:** Dynamic plotting for Accuracy and Loss curves across epochs.
 - **Performance Benchmarking:** Direct CNN vs RNN comparison on precision, recall, parameters, and computational time.
 - **Automated Workflow:** Scripts automatically generate required file directories (`models/`, `outputs/`, `images/`) and persist artifacts.
-- **GitHub & Portfolio Ready:** Immaculately structured for recruiters, technical reviewers, and open-source contributions.
+- **GitHub & Portfolio Ready:** Structured to showcase deep learning skills to recruiters and open-source reviewers.
 
 ---
 
@@ -159,38 +163,149 @@ The evaluation block automatically generates insights beyond simple accuracy:
 
 ## ⚖️ Model Comparison
 
-Below is the empirical benchmark comparing the two distinct architectures. *(Note: Exact numbers may vary slightly based on hardware execution).*
+Below is the empirical benchmark comparing the two distinct architectures, extracted directly from the notebook's generated outputs:
 
 | Metric | CNN | RNN | Verdict |
 | :--- | :---: | :---: | :--- |
-| **Test Accuracy** | `~ 98.9%` | `~ 94.6%` | 🏆 CNN dominates in spatial recognition. |
-| **F1 Score** | `> 0.98` | `~ 0.94` | 🏆 CNN is more reliable across all digit classes. |
-| **Trainable Parameters** | `~ 420,000` | `~ 53,000` | 🏆 RNN is highly parameter efficient. |
-| **Training Time** | **Fast** (Parallelized) | **Slow** (Sequential) | 🏆 CNN leverages modern GPU architectures better. |
+| **Test Accuracy** | `99.05%` | `96.33%` | 🏆 CNN dominates in spatial recognition. |
+| **Test Loss** | `0.0357` | `0.1354` | 🏆 CNN is highly confident on test classifications. |
+| **Precision (macro)** | `0.9904` | `0.9631` | 🏆 CNN displays minimal false positive rates. |
+| **Recall (macro)** | `0.9905` | `0.9627` | 🏆 CNN maximizes true positive retrieval. |
+| **F1 Score (macro)** | `0.9904` | `0.9628` | 🏆 CNN is more robust across all digit classes. |
+| **Trainable Parameters** | `421,642` | `54,538` | 🏆 RNN is highly parameter efficient. |
+| **Training Time** | `713.68s` | `735.70s` | 🏆 CNN trains faster due to GPU parallelization. |
+| **Inference Time** | `18.61s` | `6.44s` | 🏆 RNN shows faster inference on sequential streams. |
 
 ### 💡 Key Takeaways
-- **CNNs** are undeniably the optimal choice for grid-like topologies (images). Their shared weights handle translation invariance elegantly.
-- **RNNs** are computationally lighter regarding parameters, but the sequential processing bottleneck (`t` relies on `t-1`) makes them slower to train and less accurate for purely spatial tasks.
+- **CNNs** are the optimal choice for image data. Their shared weights and local receptive fields handle spatial translation invariance elegantly.
+- **RNNs** are computationally lighter regarding parameter count (requiring ~87% fewer parameters), but the sequential processing bottleneck (`t` relies on `t-1`) makes training slower and results in lower overall accuracy on spatial visual tasks.
 
 ---
 
 ## 🖼️ Generated Results
 
-Executing the notebook programmatically generates the following assets in the `images/` directory:
+The following plots and charts are generated and saved dynamically during execution.
 
-| File Name | Description |
-| :--- | :--- |
-| `dataset_samples.png` | A 2x5 grid displaying randomized MNIST training samples. |
-| `cnn_architecture.png` | Matplotlib rendered architecture flow for the CNN. |
-| `rnn_architecture.png` | Matplotlib rendered architecture flow for the RNN. |
-| `cnn_loss.png` / `cnn_accuracy.png` | Epoch-wise training and validation curves for the CNN. |
-| `rnn_loss.png` / `rnn_accuracy.png` | Epoch-wise training and validation curves for the RNN. |
-| `cnn_confusion_matrix.png` | Seaborn heatmap of the CNN predictions vs actual targets. |
-| `rnn_confusion_matrix.png` | Seaborn heatmap of the RNN predictions vs actual targets. |
-| `prediction_examples.png` | Random test inference display (Green title = Correct, Red = Incorrect). |
-| `cnn_vs_rnn_accuracy.png` | Direct bar chart benchmarking Test Accuracy. |
-| `model_comparison.png` | Programmatic rendering of the final Pandas comparison DataFrame. |
-| `workflow.png` | Visual pipeline of the data flow and execution logic. |
+### Project Pipeline Workflow
+Defines the conceptual execution layout and data ingestion lifecycle of the repository.
+<p align="center">
+<img src="images/workflow.png" width="800" alt="Workflow Pipeline">
+</p>
+**Key Observation:** Implementing a clean sequential pipeline guarantees code modifiability and clear isolation of the model architectures from preprocessing stages.
+
+---
+
+### MNIST Dataset Samples
+A visualization displaying random digits from the training dataset.
+<p align="center">
+<img src="images/dataset_samples.png" width="800" alt="MNIST Samples">
+</p>
+**Key Observation:** Digits differ significantly in handwriting style, slant, and thickness, representing the underlying variance the architectures must learn.
+
+---
+
+### CNN Layer Architecture
+Matplotlib-rendered schematic of the CNN model.
+<p align="center">
+<img src="images/cnn_architecture.png" width="800" alt="CNN Architecture">
+</p>
+**Key Observation:** The model utilizes progressive feature extraction, expanding feature maps from 32 to 64 channels while reducing spatial dimensions using pooling layers.
+
+---
+
+### RNN Layer Architecture
+Matplotlib-rendered schematic of the RNN model.
+<p align="center">
+<img src="images/rnn_architecture.png" width="800" alt="RNN Architecture">
+</p>
+**Key Observation:** Row-by-row scanning allows the recurrence hidden states to preserve state context until the final output step evaluates the classifications.
+
+---
+
+### CNN Training & Validation Performance
+Performance evaluation over 10 training epochs for the CNN model.
+<p align="center">
+<img src="images/cnn_loss.png" width="800" alt="CNN Training Loss">
+</p>
+<p align="center">
+<img src="images/cnn_accuracy.png" width="800" alt="CNN Training Accuracy">
+</p>
+**Key Observation:** The CNN curves converge rapidly, reaching low validation loss and exceptional classification accuracy early in the training cycles.
+
+---
+
+### RNN Training & Validation Performance
+Performance evaluation over 10 training epochs for the RNN model.
+<p align="center">
+<img src="images/rnn_loss.png" width="800" alt="RNN Training Loss">
+</p>
+<p align="center">
+<img src="images/rnn_accuracy.png" width="800" alt="RNN Training Accuracy">
+</p>
+**Key Observation:** The RNN exhibits higher overall validation loss and a steadier, step-like convergence profile, reflecting the temporal sequence dependency.
+
+---
+
+### CNN Confusion Matrix
+Detailed test-set classifications mapping correct targets vs. predictions.
+<p align="center">
+<img src="images/cnn_confusion_matrix.png" width="800" alt="CNN Confusion Matrix">
+</p>
+**Key Observation:** Off-diagonal values are extremely low, showing the CNN excels at distinguishing similar structures (e.g., 4 vs. 9).
+
+---
+
+### RNN Confusion Matrix
+Detailed test-set classifications mapping for the sequential network.
+<p align="center">
+<img src="images/rnn_confusion_matrix.png" width="800" alt="RNN Confusion Matrix">
+</p>
+**Key Observation:** Higher error rates are observed, with misclassifications occurring on structurally similar digits, showcasing the limitation of sequential-based spatial recognition.
+
+---
+
+### Inference Sample Predictions
+A visualization showing test predictions made by the trained network.
+<p align="center">
+<img src="images/prediction_examples.png" width="800" alt="Prediction Examples">
+</p>
+**Key Observation:** Green text titles highlight successful predictions, illustrating model performance across varied representations of handwritten inputs.
+
+---
+
+### CNN vs RNN Accuracy Comparison
+Comparison of the validation accuracies of CNN and RNN.
+<p align="center">
+<img src="images/cnn_vs_rnn_accuracy.png" width="800" alt="CNN vs RNN Accuracy Comparison">
+</p>
+**Key Observation:** The CNN outperforms the RNN by approximately 2.72% on classification accuracy.
+
+---
+
+### CNN vs RNN Test Loss Comparison
+Direct comparison of final test loss values.
+<p align="center">
+<img src="images/cnn_vs_rnn_loss.png" width="800" alt="CNN vs RNN Test Loss Comparison">
+</p>
+**Key Observation:** The CNN achieves a lower test loss, reflecting higher statistical confidence in its prediction distributions.
+
+---
+
+### CNN vs RNN Computational Speed
+Comparison of training runtime in seconds.
+<p align="center">
+<img src="images/cnn_vs_rnn_training_time.png" width="800" alt="CNN vs RNN Training Time Comparison">
+</p>
+**Key Observation:** Despite having more parameters, the CNN trains faster than the RNN due to parallel GPU computational pipelines.
+
+---
+
+### Model Performance Metrics Table
+Programmatic summary rendering of all comparative stats.
+<p align="center">
+<img src="images/model_comparison.png" width="800" alt="Model Comparison Metrics">
+</p>
+**Key Observation:** Tabular summaries clearly highlight the trade-off: CNN is superior in visual accuracy and parallel computation speed, whereas RNN is superior in parameter efficiency.
 
 ---
 
@@ -203,9 +318,29 @@ MNIST-CNN-vs-RNN-PyTorch/
 ├── requirements.txt          # Python dependencies & version constraints
 ├── .gitignore                # Professional Python/PyTorch ignore configuration
 ├── MNIST_RNN_CNN.ipynb       # Executable Jupyter Notebook
+├── build_notebook.py         # Helper script to assemble/update the notebook
 │
 ├── images/                   # 📁 Auto-generated high-res visualizations
+│   ├── cnn_accuracy.png
+│   ├── cnn_architecture.png
+│   ├── cnn_confusion_matrix.png
+│   ├── cnn_loss.png
+│   ├── cnn_vs_rnn_accuracy.png
+│   ├── cnn_vs_rnn_loss.png
+│   ├── cnn_vs_rnn_training_time.png
+│   ├── dataset_samples.png
+│   ├── model_comparison.png
+│   ├── prediction_examples.png
+│   ├── prediction_examples_rnn.png
+│   ├── rnn_accuracy.png
+│   ├── rnn_architecture.png
+│   ├── rnn_confusion_matrix.png
+│   ├── rnn_loss.png
+│   └── workflow.png
+│
 ├── outputs/                  # 📁 Auto-generated CSV benchmarking data
+│   └── model_comparison.csv
+│
 └── models/                   # 📁 Auto-generated PyTorch weights (.pth)
 ```
 
@@ -219,7 +354,7 @@ Follow these steps to replicate the environment and execute the project locally.
 <summary><strong>1. Clone the repository</strong></summary>
 
 ```bash
-git clone https://github.com/yourusername/MNIST-CNN-vs-RNN-PyTorch.git
+git clone https://github.com/skaadil9172/MNIST-CNN-vs-RNN-PyTorch.git
 cd MNIST-CNN-vs-RNN-PyTorch
 ```
 </details>
@@ -274,7 +409,7 @@ This project lays the foundation for robust deep learning experimentation. Futur
 ## 🌍 Real World Applications
 
 The underlying mechanics of this project power enterprise AI systems globally:
-- **CNNs** drive facial recognition APIs, medical tumor detection, autonomous driving object detection, and satellite imagery analysis.
+- **CNNs** drive facial recognition APIs, medical image diagnostics, object detection in self-driving cars, and satellite imagery analysis.
 - **RNNs** are the backbone of sequential models handling stock market time-series forecasting, real-time speech-to-text, and Natural Language Processing (NLP) tasks.
 
 ---
