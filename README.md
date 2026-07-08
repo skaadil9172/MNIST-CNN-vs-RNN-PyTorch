@@ -1,7 +1,5 @@
 <!-- TODO: Place banner.png inside the images/ folder to replace the placeholder banner -->
-<p align="center">
-<img src="images/banner.png" width="100%" alt="MNIST CNN vs RNN PyTorch Banner">
-</p>
+
 
 <div align="center">
 
