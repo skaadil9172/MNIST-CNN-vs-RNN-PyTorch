@@ -415,7 +415,7 @@ The underlying mechanics of this project power enterprise AI systems globally:
 ## ✍️ Author
 
 **Aadil Shaikh**  
-*Senior AI Engineer | Deep Learning Researcher*  
+* AI Engineer *  
 [![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat-square&logo=github&logoColor=white)](https://github.com/skaadil9172)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat-square&logo=linkedin&logoColor=white)]([https://linkedin.com/in/your-linkedin-profile](https://linkedin.com/in/aadil-shaikh-a4080a253))
 
