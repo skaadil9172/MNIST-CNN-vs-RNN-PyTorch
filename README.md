@@ -3,7 +3,6 @@
 # MNIST Handwritten Digit Classification: CNN vs RNN
 **Comparative Analysis of Convolutional Neural Networks and Recurrent Neural Networks using PyTorch**
 
-<img src="images/banner.png" alt="Project Banner Placeholder" width="100%">
 
 <br />
 
